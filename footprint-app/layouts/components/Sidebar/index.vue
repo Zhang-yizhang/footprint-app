@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+  <div style="100%">
+    <el-aside width="200px">
       <el-menu>
-        <el-submenu v-for="item in data" :key="item.name" :index="item.name">
-          <template slot="title">
-            <i :class="getIconCls(item.meta.icon)"></i>
-            {{ item.meta.title }}
-          </template>
-          <template v-if="hasChildren(item)">
+        <template v-for="item in data">
+          <!-- 有子菜单，嵌套菜单 -->
+          <el-submenu
+            v-if="hasChildren(item)"
+            :key="item.name"
+            :index="item.name"
+          >
+            <template slot="title">
+              <i :class="getIconCls(item.meta.icon)"></i>
+              {{ item.meta.title }}
+            </template>
             <template v-for="child in item.children">
               <el-submenu
                 v-if="hasChildren(child)"
@@ -15,16 +20,26 @@
                 :index="child.name"
               >
                 <template slot="title">{{ item.meta.title }}</template>
-                <el-menu-item :key="child.name" :index="child.name">{{
-                  child.meta.title
-                }}</el-menu-item>
+                <el-menu-item :key="child.name" :index="child.name">
+                  <!-- 这里用nuxt跳转(子菜单的子菜单......) -->
+                  <nuxt-link :to="child.path">{{ child.meta.title }}</nuxt-link>
+                </el-menu-item>
               </el-submenu>
-              <el-menu-item v-else :key="child.name" :index="child.name">{{
-                child.meta.title
-              }}</el-menu-item>
+              <el-menu-item v-else :key="child.name" :index="child.name">
+                <!-- 这里用nuxt跳转(子菜单) -->
+                <nuxt-link :to="child.path">{{ child.meta.title }}</nuxt-link>
+              </el-menu-item>
             </template>
+          </el-submenu>
+          <!-- 只有一级菜单 -->
+          <template v-else> 
+            <el-menu-item :key="item.name" index="item.name">
+              <i :class="getIconCls(item.meta.icon)"></i>
+              <!-- 这里 -->
+              <nuxt-link :to="item.path">{{ item.meta.title }}</nuxt-link>
+            </el-menu-item>
           </template>
-        </el-submenu>
+        </template>
       </el-menu>
     </el-aside>
   </div>

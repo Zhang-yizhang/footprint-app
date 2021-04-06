@@ -16,6 +16,7 @@
     "core-js": "^3.9.1",
     "element-ui": "^2.15.1",
     "leaflet": "^1.7.1",
+    "mockjs": "^1.1.0",
     "nuxt": "^2.15.3",
     "vue2-leaflet": "^2.7.0"
   },

@@ -6,7 +6,6 @@
       <!-- 侧边栏组件 -->
       <Sidebar :data="menuData" />
       <el-main>
-        <h3>重构布局页面</h3>
         <!-- nuxt 相当于路由，nuxt.js 会编译别的页面插入此处 -->
         <nuxt />
       </el-main>
@@ -20,7 +19,7 @@ import MenuData from './menu-data'
 export default {
   name: 'DefaultLayouts',
   components: { Sidebar, Header },
-  data() {
+  data () {
     return {
       menuData: MenuData
     }

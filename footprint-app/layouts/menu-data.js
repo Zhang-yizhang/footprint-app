@@ -1,8 +1,13 @@
 const MenuData = [ // eslint-disable-line no-unused-vars
     {
-        path: 'foot-point',
+        path: 'footpoint',
         name: 'foot-point',
         meta: { title: '足迹点管理', icon: 'location' }
+    },
+    {
+        path: 'demo',
+        name: 'demo',
+        meta: { title: '测试demo', icon: 'location' }
     },
     {
         path: 'test',
